@@ -6,41 +6,24 @@
 void ATankAIController::BeginPlay()
 {
 	Super::BeginPlay();
-	auto PlayerTank = GetPlayerTank();
-
-	if (!PlayerTank)
-	{
-
-	}
 }
 
 // Called every frame
 void ATankAIController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	if (GetPlayerTank())
+
+	auto PlayerTank = Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
+	auto ControlledTank = Cast<ATank>(GetPawn());
+
+	if (PlayerTank)
 	{
 		// Move toward crsshair
 
 		//Aim player
-		GetControlledTank()->AimAt(GetPlayerTank()->GetActorLocation());
-			// Fire when ready
+		ControlledTank->AimAt(PlayerTank->GetActorLocation());
+		
+		ControlledTank->Fire(); 
 	}
 
-}
-
-ATank* ATankAIController::GetControlledTank() const
-{
-	return Cast<ATank>(GetPawn());
-}
-
-ATank* ATankAIController::GetPlayerTank() const
-{
-	auto PlayerTank = GetWorld()->GetFirstPlayerController()->GetPawn();
-	if(!PlayerTank)
-	{
-		return nullptr;
-	}
-
-	return Cast<ATank>(PlayerTank);
 }
