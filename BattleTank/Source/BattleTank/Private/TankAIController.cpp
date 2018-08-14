@@ -19,6 +19,7 @@ void ATankAIController::Tick(float DeltaTime)
 	if (PlayerTank)
 	{
 		// Move toward crsshair
+		MoveToActor(PlayerTank, AcceptanceRadius); //TO check radius
 
 		//Aim player
 		ControlledTank->AimAt(PlayerTank->GetActorLocation());

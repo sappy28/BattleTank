@@ -13,12 +13,6 @@ void ATankPlayerController::Tick(float DeltaTime)
 void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
-	auto ControlledTank = GetControlledTank();
-
-	if (!ControlledTank)
-	{
-
-	}
 }
 
 
